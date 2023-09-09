@@ -9,6 +9,7 @@ var image2 = new Image();
 var fondoImg = new Image();
 var pauseImg = new Image();
 var audio = new Audio();
+var audio2 = new Audio();
 let cronometro;
 let isRunning = false;
 let segundos = 0;
@@ -17,8 +18,8 @@ var tiempoTotal = 0;
 var tiempoRestante = tiempoTotal; 
 var intervalo = 1000; 
 
-//audio.src="song.mp3";
-//audio.src="siuu.mp3";
+audio.src="song.mp3";
+audio2.src="finish.mp3";
 fondoImg.src="PARK.jpeg";
 image.src="Mamado.png";
 image2.src="rigby.png";
@@ -58,7 +59,8 @@ class Cuadrado{
 }
 
 const player = new Cuadrado(20,40,50,50,"black"); 
-const target = new Cuadrado(randomInteger(460), randomInteger(460),40,40,"black");
+const target = new Cuadrado(1200, 1000,40,40,"black");
+const target2 = new Cuadrado(200, 1000,40,40,"black");
 
 
 
@@ -243,10 +245,18 @@ function update(){
 
         if (player.seTocan(target)) {
 
-            target.x = randomInteger(460);
-            target.y = randomInteger(460);
+            target.x = 1200;
+            target.y = 1200;
             score+=10
-            audio.play();
+            audio2.play();
+        }
+
+        if (player.seTocan(target2)) {
+
+            target2.x = 1200;
+            target2.y = 1200;
+            score+=10
+            audio2.play();
         }
 
         for (var i = walls.length - 1; i >= 0; i--) { 
@@ -270,8 +280,12 @@ function update(){
             }
 
             if (target.seTocan(walls[i])) {
-                target.x = randomInteger(460);
-                target.y = randomInteger(460);
+                target.x = 1485;
+                target.y = 1050;
+            }
+            if (target2.seTocan(walls[i])) {
+                target2.x = 135;
+                target2.y = 1050;
             }
         } 
 
@@ -307,6 +321,8 @@ ctx.drawImage(fondoImg,0,0,1645,1100);
 //JUGADORES
     ctx.drawImage(image,player.x,player.y,40,40);
     ctx.drawImage(image2, target.x, target.y, 40, 40);
+    ctx.drawImage(image2, target2.x, target2.y, 40, 40);
+
   
     for (var i = walls.length - 1; i >= 0; i--) {
         walls[i].paint(ctx);
