@@ -4,6 +4,7 @@ var  dir = 0, speed = 10;
 let score = 0;
 let walls = [];
 let pause = false;
+let enter = true;
 var image = new Image();
 var image2 = new Image();
 var fondoImg = new Image();
@@ -13,6 +14,7 @@ var audio = new Audio();
 var audio2 = new Audio();
 var colect = new Audio();
 var imagenFondo = new Image();
+var inicioFondo = new Image();
 let cronometro;
 let isRunning = false;
 let segundos = 0;
@@ -30,6 +32,7 @@ image3.src="soda.png"
 image2.src="rigby.png";
 pauseImg.src="Pause.jpg";
 imagenFondo.src = 'Espacio.jpg';
+inicioFondo.src ='inicio.jpg';
 
 class Cuadrado{
 
@@ -211,7 +214,7 @@ window.requestAnimationFrame = (function () {
 }());
 
 document.addEventListener("keydown", (e) =>{
-
+//MANDOS
     if (!pause) {
         switch(e.keyCode){ 
             case 87:
@@ -233,6 +236,13 @@ document.addEventListener("keydown", (e) =>{
         case 32:
              //speed+=5;
             pause = !pause;
+        break;  
+    }
+
+    switch(e.keyCode){  
+        case 13:
+             audio.play(); 
+           enter = !enter;
         break;  
     }
 
@@ -497,11 +507,13 @@ function update(){
 
 //DISEÑO DE LABERINTO
 function paint(){
+
+    //ctx.drawImage(inicioFondo,0,0,1645,1100);
 //MAPA DE FONDO
 
 ctx.drawImage(fondoImg,0,0,1645,1100);
    // ctx.fillRect(0,0,1645,1100);
-    audio.play();
+  
 
 //PUNTAJE Y TITULO
     ctx.font = "20px ARIAL";
@@ -555,10 +567,28 @@ ctx.drawImage(fondoImg,0,0,1645,1100);
     //ctx.fillRect(0,0,700,700);
     ctx.font = "50px ARIAL";
     ctx.fillStyle = "WHITE";
-    ctx.fillText("P A U S E (PRESIONA [ESPACIO] PARA REANUDAR)", 185, 225);
+    ctx.fillText("P A U S E ", 685, 225);
     ctx.fillText("(PRESIONA [ESPACIO] PARA REANUDAR)", 300, 425);
 
     }
+
+    if (enter) {
+
+        //DISEÑO DE PAUSADO
+            ctx.drawImage(inicioFondo,0,0,1645,1100);
+            //ctx.fillRect(0,0,700,700);
+            
+            ctx.font = "50px ARIAL";
+            ctx.fillStyle = "WHITE";
+            ctx.fillText("REGULAR SHOW ", 85, 225);
+            ctx.fillText("RESCUE RIGBY ", 85, 325);
+            ctx.fillText("(PRESIONA [ENTER] PARA JUGAR)", 720, 150);
+            
+            }
+
+
+
+
 
  
 }
@@ -582,18 +612,18 @@ function randomInteger(max) {
   function dibujarTiempo() {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpia el canvas
 
-    // Configura el estilo del texto
+    
   }
 
   // Función para actualizar el temporizador
   function actualizarTemporizador() {
-    tiempoRestante++; // Reduce el tiempo restante en 1 segundo
+    tiempoRestante++;
 
     if (tiempoRestante >= 0) {
       dibujarTiempo(); // Dibuja el tiempo actualizado
     } else {
       clearInterval(intervalID); 
-      alert("Tiempo agotado");
+      //alert("Tiempo agotado");
     }
   }
 
