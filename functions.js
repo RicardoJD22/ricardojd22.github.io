@@ -8,8 +8,11 @@ var image = new Image();
 var image2 = new Image();
 var fondoImg = new Image();
 var pauseImg = new Image();
+var image3 = new Image();
 var audio = new Audio();
 var audio2 = new Audio();
+var colect = new Audio();
+var imagenFondo = new Image();
 let cronometro;
 let isRunning = false;
 let segundos = 0;
@@ -19,12 +22,13 @@ var tiempoRestante = tiempoTotal;
 var intervalo = 1000; 
 
 audio.src="song.mp3";
+colect.src="coleccion.mp3";
 audio2.src="finish.mp3";
 fondoImg.src="PARK.jpeg";
 image.src="Mamado.png";
+image3.src="soda.png"
 image2.src="rigby.png";
 pauseImg.src="Pause.jpg";
-var imagenFondo = new Image();
 imagenFondo.src = 'Espacio.jpg';
 
 class Cuadrado{
@@ -57,10 +61,29 @@ class Cuadrado{
     }
 
 }
-
+//JUGADOR
 const player = new Cuadrado(20,40,50,50,"black"); 
+
+//SALIDAS
 const target = new Cuadrado(1200, 1000,40,40,"black");
 const target2 = new Cuadrado(200, 1000,40,40,"black");
+
+//SODAS
+const object = new Cuadrado(200, 300,40,40,"black");
+const object2 = new Cuadrado(200, 300,40,40,"black");
+const object3 = new Cuadrado(200, 300,40,40,"black");
+const object4 = new Cuadrado(200, 300,40,40,"black");
+const object5 = new Cuadrado(200, 300,40,40,"black");
+const object6 = new Cuadrado(200, 300,40,40,"black");
+const object7 = new Cuadrado(200, 300,40,40,"black");
+const object8 = new Cuadrado(200, 300,40,40,"black");
+const object9 = new Cuadrado(200, 300,40,40,"black");
+const object10 = new Cuadrado(200, 300,40,40,"black");
+const object11 = new Cuadrado(200, 300,40,40,"black");
+const object12 = new Cuadrado(200, 300,40,40,"black");
+const object13 = new Cuadrado(200, 300,40,40,"black");
+const object14 = new Cuadrado(200, 300,40,40,"black");
+const object15 = new Cuadrado(200, 300,40,40,"black");
 
 
 
@@ -242,7 +265,7 @@ function update(){
                 player.x = 1655;
             }
         } 
-
+//SI EL JUGADOR ATRAPA AL MAPACHE GANA Y ENCUENTRA LA SALIDA
         if (player.seTocan(target)) {
 
             target.x = 1200;
@@ -250,7 +273,7 @@ function update(){
             score+=10
             audio2.play();
         }
-
+//SI EL JUGADOR ALCANZA EL TARGET SE ESCUCHARA UN SONIDO
         if (player.seTocan(target2)) {
 
             target2.x = 1200;
@@ -258,6 +281,119 @@ function update(){
             score+=10
             audio2.play();
         }
+//SI EL JUGADOR TOMA UNA SODA SUMARA PUNTOS
+        if (player.seTocan(object)) {
+
+            object.x = 1200;
+            object.y = 1200;
+            score+=10
+            colect.play();
+            
+        }
+
+        if (player.seTocan(object2)) {
+
+            object2.x = 1200;
+            object2.y = 1200;
+            score+=10
+            colect.play();
+        }
+        if (player.seTocan(object3)) {
+
+            object3.x = 1200;
+            object3.y = 1200;
+            score+=10
+            colect.play();
+        }
+
+        if (player.seTocan(object4)) {
+
+            object4.x = 1200;
+            object4.y = 1200;
+            score+=10
+            colect.play();
+        }
+
+        if (player.seTocan(object5)) {
+
+            object5.x = 1200;
+            object5.y = 1200;
+            score+=10
+            colect.play();
+        }
+
+        if (player.seTocan(object6)) {
+
+            object6.x = 1200;
+            object6.y = 1200;
+            score+=10
+            colect.play();
+        }
+        if (player.seTocan(object7)) {
+
+            object7.x = 1200;
+            object7.y = 1200;
+            score+=10
+            colect.play();
+        }
+        if (player.seTocan(object8)) {
+
+            object8.x = 1200;
+            object8.y = 1200;
+            score+=10
+            colect.play();
+        }
+        if (player.seTocan(object9)) {
+
+            object9.x = 1200;
+            object9.y = 1200;
+            score+=10
+            colect.play();
+        }
+        if (player.seTocan(object10)) {
+
+            object10.x = 1200;
+            object10.y = 1200;
+            score+=10
+            colect.play();
+        }
+        if (player.seTocan(object11)) {
+
+            object11.x = 1200;
+            object11.y = 1200;
+            score+=10
+            colect.play();
+        }
+        if (player.seTocan(object12)) {
+
+            object12.x = 1200;
+            object12.y = 1200;
+            score+=10
+            colect.play();
+        }
+        if (player.seTocan(object13)) {
+
+            object13.x = 1200;
+            object13.y = 1200;
+            score+=10
+            colect.play();
+        }
+        if (player.seTocan(object14)) {
+
+            object14.x = 1200;
+            object14.y = 1200;
+            score+=10
+            colect.play();
+        }
+        if (player.seTocan(object15)) {
+
+            object15.x = 1400;
+            object15.y = 1400;
+            score+=10
+            colect.play();
+        }
+
+      
 
         for (var i = walls.length - 1; i >= 0; i--) { 
 
@@ -286,6 +422,70 @@ function update(){
             if (target2.seTocan(walls[i])) {
                 target2.x = 135;
                 target2.y = 1050;
+            }
+            if (object.seTocan(walls[i])) {
+                object.x = 110;
+                object.y = 250;
+            }
+
+            if (object2.seTocan(walls[i])) {
+                object2.x = 220;
+                object2.y = 530;
+            }
+
+            if (object3.seTocan(walls[i])) {
+                object3.x = 500;
+                object3.y = 530;
+            }
+
+            if (object4.seTocan(walls[i])) {
+                object4.x = 400;
+                object4.y = 120;
+            }
+            if (object5.seTocan(walls[i])) {
+                object5.x = 1530;
+                object5.y = 200;
+            }
+            if (object6.seTocan(walls[i])) {
+                object6.x = 1030;
+                object6.y = 200;
+            }
+
+            if (object7.seTocan(walls[i])) {
+                object7.x = 730;
+                object7.y = 790;
+            }
+            if (object8.seTocan(walls[i])) {
+                object8.x = 1330;
+                object8.y = 870;
+            }
+            if (object9.seTocan(walls[i])) {
+                object9.x = 1260;
+                object9.y = 200;
+            }
+            if (object10.seTocan(walls[i])) {
+                object10.x = 130;
+                object10.y = 800;
+            }
+            if (object11.seTocan(walls[i])) {
+                object11.x = 1250;
+                object11.y = 950;
+            }
+            if (object12.seTocan(walls[i])) {
+                object12.x = 1230;
+                object12.y = 670;
+            }
+            if (object13.seTocan(walls[i])) {
+                object13.x = 820;
+                object13.y = 520;
+            }
+            if (object14.seTocan(walls[i])) {
+                object14.x = 1450;
+                object14.y = 380;
+            }
+            if (object15.seTocan(walls[i])) {
+                object15.x = 690;
+                object15.y = 330;
             }
         } 
 
@@ -322,6 +522,26 @@ ctx.drawImage(fondoImg,0,0,1645,1100);
     ctx.drawImage(image,player.x,player.y,40,40);
     ctx.drawImage(image2, target.x, target.y, 40, 40);
     ctx.drawImage(image2, target2.x, target2.y, 40, 40);
+
+
+//PUNTOS (SODAS)
+    ctx.drawImage(image3, object.x, object.y, 40, 40);
+    ctx.drawImage(image3, object2.x, object2.y, 40, 40);
+    ctx.drawImage(image3, object3.x, object3.y, 40, 40);
+    ctx.drawImage(image3, object4.x, object4.y, 40, 40);
+    ctx.drawImage(image3, object5.x, object5.y, 40, 40);
+    ctx.drawImage(image3, object6.x, object6.y, 40, 40);
+    ctx.drawImage(image3, object7.x, object7.y, 40, 40);
+    ctx.drawImage(image3, object8.x, object8.y, 40, 40);
+    ctx.drawImage(image3, object9.x, object9.y, 40, 40);
+    ctx.drawImage(image3, object10.x, object10.y, 40, 40);
+    ctx.drawImage(image3, object11.x, object11.y, 40, 40);
+    ctx.drawImage(image3, object12.x, object12.y, 40, 40);
+    ctx.drawImage(image3, object13.x, object13.y, 40, 40);
+    ctx.drawImage(image3, object14.x, object14.y, 40, 40);
+    ctx.drawImage(image3, object15.x, object15.y, 40, 40);
+    
+    
 
   
     for (var i = walls.length - 1; i >= 0; i--) {
@@ -372,7 +592,7 @@ function randomInteger(max) {
     if (tiempoRestante >= 0) {
       dibujarTiempo(); // Dibuja el tiempo actualizado
     } else {
-      clearInterval(intervalID); // Detiene el temporizador cuando el tiempo se agota
+      clearInterval(intervalID); 
       alert("Tiempo agotado");
     }
   }
