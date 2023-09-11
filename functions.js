@@ -23,7 +23,7 @@ var tiempoTotal = 0;
 var tiempoRestante = tiempoTotal; 
 var intervalo = 1000; 
 
-//audio.src="song.mp3";
+audio.src="song.mp3";
 colect.src="coleccion.mp3";
 audio2.src="finish.mp3";
 fondoImg.src="PARK.jpeg";
@@ -282,7 +282,7 @@ function update(){
             player.y = 45;
             score+=10
             audio2.play();
-            alert("Encontraste la salida");
+            alert("Felicidades Encontraste la salida");
         }
 //SI EL JUGADOR ALCANZA EL TARGET SE ESCUCHARA UN SONIDO
        if (target2.seTocan(player)) {
@@ -291,7 +291,7 @@ function update(){
            player.y = 45;
            score+=10
            audio2.play();
-           alert("Encontraste la salida");
+           alert("Felicidades Encontraste la salida");
         }
 //SI EL JUGADOR TOMA UNA SODA SUMARA PUNTOS
         if (player.seTocan(object)) {
@@ -617,20 +617,20 @@ function randomInteger(max) {
     
   }
 
-  // Función para actualizar el temporizador
+  // FUNCION PARA ACTUALIZAR EL TEMPORIZADOR
   function actualizarTemporizador() {
     tiempoRestante++;
 
     if (tiempoRestante >= 0) {
-      dibujarTiempo(); // Dibuja el tiempo actualizado
+      dibujarTiempo(); // DIBUJA EL CRONOMETRO
     } else {
       clearInterval(intervalID); 
-      //alert("Tiempo agotado");
+      
     }
   }
 
-  // Inicia el temporizador
+  // INICIA EL TIEMPO
   var intervalID = setInterval(actualizarTemporizador, intervalo);
 
-  // Llama a la función de dibujo inicial
+  // LLAMA LA FUNCION DE TIEMPO
   dibujarTiempo();
