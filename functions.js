@@ -23,7 +23,7 @@ var tiempoTotal = 0;
 var tiempoRestante = tiempoTotal; 
 var intervalo = 1000; 
 
-audio.src="song.mp3";
+//audio.src="song.mp3";
 colect.src="coleccion.mp3";
 audio2.src="finish.mp3";
 fondoImg.src="PARK.jpeg";
@@ -276,20 +276,22 @@ function update(){
             }
         } 
 //SI EL JUGADOR ATRAPA AL MAPACHE GANA Y ENCUENTRA LA SALIDA
-        if (player.seTocan(target)) {
+        if (target.seTocan(player)) {
 
-            target.x = 1200;
-            target.y = 1200;
+            player.x = 20;
+            player.y = 45;
             score+=10
             audio2.play();
+            alert("Encontraste la salida");
         }
 //SI EL JUGADOR ALCANZA EL TARGET SE ESCUCHARA UN SONIDO
-        if (player.seTocan(target2)) {
+       if (target2.seTocan(player)) {
 
-            target2.x = 1200;
-            target2.y = 1200;
-            score+=10
-            audio2.play();
+           player.x = 20;
+           player.y = 45;
+           score+=10
+           audio2.play();
+           alert("Encontraste la salida");
         }
 //SI EL JUGADOR TOMA UNA SODA SUMARA PUNTOS
         if (player.seTocan(object)) {
