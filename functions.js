@@ -276,7 +276,7 @@ function update(){
             }
         } 
 //SI EL JUGADOR ATRAPA AL MAPACHE GANA Y ENCUENTRA LA SALIDA
-        if (target.seTocan(player)) {
+/*        if (target.seTocan(player)) {
 
             player.x = 20;
             player.y = 45;
@@ -284,7 +284,7 @@ function update(){
             audio2.play();
             alert("Felicidades Encontraste la salida");
         }
-//SI EL JUGADOR ALCANZA EL TARGET SE ESCUCHARA UN SONIDO
+
        if (target2.seTocan(player)) {
 
            player.x = 20;
@@ -292,7 +292,13 @@ function update(){
            score+=10
            audio2.play();
            alert("Felicidades Encontraste la salida");
-        }
+        }*/
+//SI EL JUGADOR ALCANZA EL TARGET SE ESCUCHARA UN SONIDO
+        if (player.seTocan(target) || player.seTocan(target2)) {
+            reiniciarJuego();
+            audio2.play();
+            alert("Felicidades has ganado");
+             }
 //SI EL JUGADOR TOMA UNA SODA SUMARA PUNTOS
         if (player.seTocan(object)) {
 
@@ -612,7 +618,7 @@ function randomInteger(max) {
 
 //TEMPORIZADOR
   function dibujarTiempo() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpia el canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height); 
 
     
   }
@@ -634,3 +640,35 @@ function randomInteger(max) {
 
   // LLAMA LA FUNCION DE TIEMPO
   dibujarTiempo();
+
+
+  //ESTA FUNCIÓN PERMITE REINCIAR EL JUEGO UNA VEZ QUE SE CONSIGUIO GANAR
+  function reiniciarJuego() {
+   
+    score = 0;
+    player.x = 20;
+    player.y = 40;
+    
+    // RESTABLECE LA POSICION DE LOS OBJETIVOS
+    target.x = 1200;
+    target.y = 1000;
+    target2.x = 200;
+    target2.y = 1000;
+
+    // RESTABLECE LA POSICIÓN DE LAS COLECTAS
+    object.x = 200;
+    object.y = 300;
+    
+
+    // REANUDA SI EL JUEGO ESTA EN PAUSA
+    pause = false;
+    
+    // REINICIA EL TEMPORIZADOR
+    tiempoRestante = tiempoTotal;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // PERMITE INICIAR NUEVAMENTE EL JUEGO
+    update();
+}
+
