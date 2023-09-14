@@ -4,10 +4,12 @@
 var canvas = document.getElementById('myCanvas');
 var ctx = canvas.getContext('2d');
 var  dir = 0, speed = 10;
+let levels = 1;
 let score = 0;
 let walls = [];
 let pause = false;
 let rules = false;
+var musicPaused = false;
 let enter = true;
 var image = new Image();
 var image2 = new Image();
@@ -241,11 +243,18 @@ document.addEventListener("keydown", (e) =>{
         }  
     }
 
-    switch(e.keyCode){  
+    switch (e.keyCode) {
         case 32:
-             //speed+=5;
-            pause = !pause;
-        break;  
+            if (musicPaused) {
+                audio.play();  
+            } else {
+               // Reanudar la música
+                audio.pause();
+            }
+            musicPaused = !musicPaused; 
+            pause = !pause; 
+            break;
+
     }
 
     switch(e.keyCode){  
@@ -296,6 +305,7 @@ function update(){
         if (player.seTocan(target) || player.seTocan(target2)) {
             reiniciarJuego();
             audio2.play();
+            levels+=1
             alert("Has ganado");
              }
 //SI EL JUGADOR TOMA UNA SODA SUMARA PUNTOS
@@ -532,6 +542,11 @@ ctx.drawImage(fondoImg,0,0,1645,1100);
     ctx.font = "20px ARIAL";
     ctx.fillStyle = "BLACK";
     ctx.fillText("REGLAS (Q) ", 450, 23);
+    ctx.font = "20px ARIAL";
+    ctx.fillStyle = "BLACK";
+    ctx.fillText("NIVEL: "+levels, 265, 23);
+
+
 
 
     ctx.font = "30px Arial";
