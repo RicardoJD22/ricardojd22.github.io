@@ -1,18 +1,24 @@
- var canvas = document.getElementById('myCanvas');
+//JUEGO DE LABERINTO CREADO POR RICARDO GIBERT TOLEDO
+//PROGRAMACIÓN AVANZADA DE INTERNET
+
+var canvas = document.getElementById('myCanvas');
 var ctx = canvas.getContext('2d');
 var  dir = 0, speed = 10;
 let score = 0;
 let walls = [];
 let pause = false;
+let rules = false;
 let enter = true;
 var image = new Image();
 var image2 = new Image();
 var fondoImg = new Image();
 var pauseImg = new Image();
+var rulesImg = new Image();
 var image3 = new Image();
 var audio = new Audio();
 var audio2 = new Audio();
 var colect = new Audio();
+//var winImg = new Image();
 var imagenFondo = new Image();
 var inicioFondo = new Image();
 let cronometro;
@@ -24,13 +30,15 @@ var tiempoRestante = tiempoTotal;
 var intervalo = 1000; 
 
 audio.src="song.mp3";
+//winImg.src="win.png";
 colect.src="coleccion.mp3";
 audio2.src="finish.mp3";
 fondoImg.src="PARK.jpeg";
+rulesImg.src="Pause.jpg";
 image.src="Mamado.png";
 image3.src="soda.png"
 image2.src="rigby.png";
-pauseImg.src="Pause.jpg";
+pauseImg.src="win.png";
 imagenFondo.src = 'Espacio.jpg';
 inicioFondo.src ='inicio.jpg';
 
@@ -229,6 +237,7 @@ document.addEventListener("keydown", (e) =>{
             case 65:
                 dir = 4;
             break; 
+            
         }  
     }
 
@@ -243,6 +252,13 @@ document.addEventListener("keydown", (e) =>{
         case 13:
              audio.play(); 
            enter = !enter;
+        break;  
+    }
+
+    switch(e.keyCode){  
+        case 81:
+             
+           rules = !rules;
         break;  
     }
 
@@ -275,29 +291,12 @@ function update(){
                 player.x = 1655;
             }
         } 
-//SI EL JUGADOR ATRAPA AL MAPACHE GANA Y ENCUENTRA LA SALIDA
-/*        if (target.seTocan(player)) {
 
-            player.x = 20;
-            player.y = 45;
-            score+=10
-            audio2.play();
-            alert("Felicidades Encontraste la salida");
-        }
-
-       if (target2.seTocan(player)) {
-
-           player.x = 20;
-           player.y = 45;
-           score+=10
-           audio2.play();
-           alert("Felicidades Encontraste la salida");
-        }*/
 //SI EL JUGADOR ALCANZA EL TARGET SE ESCUCHARA UN SONIDO
         if (player.seTocan(target) || player.seTocan(target2)) {
             reiniciarJuego();
             audio2.play();
-            alert("Felicidades has ganado");
+            alert("Has ganado");
              }
 //SI EL JUGADOR TOMA UNA SODA SUMARA PUNTOS
         if (player.seTocan(object)) {
@@ -530,6 +529,9 @@ ctx.drawImage(fondoImg,0,0,1645,1100);
     ctx.font = "20px ARIAL";
     ctx.fillStyle = "BLACK";
     ctx.fillText("REGULAR SHOW ", 730, 23);
+    ctx.font = "20px ARIAL";
+    ctx.fillStyle = "BLACK";
+    ctx.fillText("REGLAS (Q) ", 450, 23);
 
 
     ctx.font = "30px Arial";
@@ -574,11 +576,26 @@ ctx.drawImage(fondoImg,0,0,1645,1100);
     ctx.drawImage(pauseImg,0,0,1645,1100);
     //ctx.fillRect(0,0,700,700);
     ctx.font = "50px ARIAL";
-    ctx.fillStyle = "WHITE";
-    ctx.fillText("P A U S E ", 685, 225);
-    ctx.fillText("(PRESIONA [ESPACIO] PARA REANUDAR)", 300, 425);
+    ctx.fillStyle = "BLACK";
+    ctx.fillText("P A U S A ", 285, 225);
+    ctx.fillText("(PRESIONA [ESPACIO] PARA REANUDAR)", 300, 1070);
 
     }
+
+    if (rules) {
+
+        //DISEÑO DE PAUSADO
+            ctx.drawImage(rulesImg,0,0,1645,1100);
+            ctx.font = "30px ARIAL";
+            ctx.fillStyle = "WHITE";
+            ctx.fillText("1.-UTILIZA (W,A,S,D) PARA MOVERTE", 285, 225);
+            ctx.fillText("2.-UTILIZA (ESPACIO) PARA PAUSAR", 285, 325);
+            ctx.fillText("3.-ENTRE MÁS VICTORIAS TENGAS MÁS RAPIDO SERA TU JUGADOR", 285, 425);
+            ctx.fillText("4.-COLECCIONA LAS SODAS PARA GANAR PUNTOS", 285, 525);
+            ctx.fillText("5.-TIENES DOS RUTAS DISTINTAS AL IGUAL QUE DOS SALIDAS", 285, 625);
+            ctx.fillText("(PRESIONA [Q] PARA REGRESAR AL JUEGO)", 300, 970);
+        
+            }
 
     if (enter) {
 
@@ -592,11 +609,11 @@ ctx.drawImage(fondoImg,0,0,1645,1100);
             ctx.fillText("RESCUE RIGBY ", 85, 325);
             ctx.fillText("(PRESIONA [ENTER] PARA JUGAR)", 720, 150);
             
+            
             }
 
 
-
-
+            
 
  
 }
@@ -655,10 +672,37 @@ function randomInteger(max) {
     target2.x = 200;
     target2.y = 1000;
 
-    // RESTABLECE LA POSICIÓN DE LAS COLECTAS
+    // RESTABLECE LA POSICIÓN DE LAS COLECTAS (SODAS)
     object.x = 200;
     object.y = 300;
-    
+    object2.x = 200;
+    object2.y = 300;
+    object3.x = 200;
+    object3.y = 300;
+    object4.x = 200;
+    object4.y = 300;
+    object5.x = 200;
+    object5.y = 300;
+    object6.x = 200;
+    object6.y = 300;
+    object7.x = 200;
+    object7.y = 300;
+    object8.x = 200;
+    object8.y = 300;
+    object9.x = 200;
+    object9.y = 300;
+    object10.x = 200;
+    object10.y = 300;
+    object11.x = 200;
+    object11.y = 300;
+    object12.x = 200;
+    object12.y = 300;
+    object13.x = 200;
+    object13.y = 300;
+    object14.x = 200;
+    object14.y = 300;
+    object15.x = 200;
+    object15.y = 300;
 
     // REANUDA SI EL JUEGO ESTA EN PAUSA
     pause = false;
