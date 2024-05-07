@@ -23,7 +23,7 @@ function draw() {
       }
     }
   }
-
+  background('peru');
   TuHorario.value(`${horaLaPaz.toString().padStart(2, '0')}:${minutoLaPaz.toString().padStart(2, '0')}`);
 
   // LA PAZ
