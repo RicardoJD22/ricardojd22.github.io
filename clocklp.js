@@ -6,7 +6,7 @@ const HOUR_HAND_THICKNESS = 4;
 const MINUTE_HAND_THICKNESS = 2;
 const SECOND_HAND_THICKNESS = 1;
 
-
+//ECUACIÓN PUNTO Y MEDIO PARA CIRCULOS
 function drawCircle(xCenter, yCenter, radius) {
   let x = radius;
   let y = 0;
@@ -26,7 +26,7 @@ function drawCircle(xCenter, yCenter, radius) {
       }
   }
 }
-//ECUACIÓN PUNTO Y MEDIO PARA CIRCULOS
+
 function plotPoints(xCenter, yCenter, x, y) {
   
   point(xCenter + x, yCenter + y);
