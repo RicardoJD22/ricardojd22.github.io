@@ -82,7 +82,7 @@ function drawHand(length, angle, thickness, color) {
   }
 
 //ALGORITMO DDA - CIUDAD DE MEXICO
-function drawCircleDDA(xCenter, yCenter, radius) {
+function drawDDA(xCenter, yCenter, radius) {
     let x = radius;
     let y = 0;
     let dx = 1;
@@ -105,35 +105,22 @@ function drawCircleDDA(xCenter, yCenter, radius) {
 }
 
 // ALGORITMO DE BRESENHAM - BARCELONA
-function drawHandBresenham(length, angle, thickness, color) {
-    stroke(color);
-    strokeWeight(thickness);
-    let x1 = 0;
-    let y1 = 0;
-    let x2 = length * cos(angle);
-    let y2 = length * sin(angle);
+function drawBresenham(xCenter, yCenter, radius) {
+    let x = 0;
+    let y = radius;
+    let d = 3 - 2 * radius;
 
-    let dx = abs(x2 - x1);
-    let dy = abs(y2 - y1);
-    let sx = (x1 < x2) ? 1 : -1;
-    let sy = (y1 < y2) ? 1 : -1;
-    let err = dx - dy;
-
-    while (true) {
-        point(x1 + CLOCK_RADIUS, y1 + CLOCK_RADIUS); // Ajuste para que el reloj se dibuje en el centro del lienzo
-        if (x1 === x2 && y1 === y2) break;
-        let e2 = 2 * err;
-        if (e2 > -dy) {
-            err -= dy;
-            x1 += sx;
+    while (x <= y) {
+        plotPoints(xCenter, yCenter, x, y);
+        if (d < 0) {
+            d = d + (4 * x) + 6;
+        } else {
+            d = d + 4 * (x - y) + 10;
+            y--;
         }
-        if (e2 < dx) {
-            err += dx;
-            y1 += sy;
-        }
+        x++;
     }
 }
-
 
 //DIBUJO DE MANESILLAS
 function drawClock(x, y, hora, minuto, segundo) {
@@ -156,9 +143,9 @@ function drawClock(x, y, hora, minuto, segundo) {
     drawHand(SECOND_HAND_LENGTH, map(segundo, 0, 60, 0, 360), SECOND_HAND_THICKNESS, color("red"));
 
     
-    drawCircleDDA(x + 150, y, CLOCK_RADIUS);
+    drawDDA(x + 150, y, CLOCK_RADIUS);
 
-    
+    drawBresenham(x + 300, y, CLOCK_RADIUS);
     pop();
 
     
