@@ -5,7 +5,7 @@ const SECOND_HAND_LENGTH = 90;
 const HOUR_HAND_THICKNESS = 4;
 const MINUTE_HAND_THICKNESS = 2;
 const SECOND_HAND_THICKNESS = 1;
-
+//RELOJ
 //ALGORITMO DE PUNTO MEDIO
 function drawCircle(xCenter, yCenter, radius) {
   let x = radius;
