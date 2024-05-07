@@ -122,7 +122,7 @@ function drawBresenham(xCenter, yCenter, radius) {
     }
 }
 
-//DIBUJO DE MANESILLAS
+//DIBUJA Y LLAMA A LA FUNCIÓN CON LOS ALGORITMOS
 function drawClock(x, y, hora, minuto, segundo) {
  
     strokeWeight(2);
@@ -146,6 +146,7 @@ function drawClock(x, y, hora, minuto, segundo) {
     drawDDA(x + 150, y, CLOCK_RADIUS);
 
     drawBresenham(x + 300, y, CLOCK_RADIUS);
+    
     pop();
 
     
